@@ -1,9 +1,9 @@
-import Request from '../Http/Request'
+import Request from '../http/Request'
 // eslint-disable-next-line import/no-cycle
 import BaseClient from './BaseClient'
 import { HTTP_METHOD } from '../constants'
-import HttpClient from '../Http/HttpClient'
-import Balance from '../Models/Balance'
+import HttpClient from '../http/HttpClient'
+import Balance from '../models/Balance'
 
 class BalanceClient extends BaseClient {
   /**

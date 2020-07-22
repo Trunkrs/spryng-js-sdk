@@ -1,8 +1,8 @@
 // eslint-disable-next-line import/no-cycle
-import MessageClient from './Clients/MessageClient'
+import MessageClient from './clients/MessageClient'
 // eslint-disable-next-line import/no-cycle
-import BalanceClient from './Clients/BalanceClient'
-import IHttpClientInterface from './Http/HttpClientInterface'
+import BalanceClient from './clients/BalanceClient'
+import IHttpClientInterface from './http/HttpClientInterface'
 
 class Spryng {
   public baseUrl = 'https://rest.spryngsms.com/v1'

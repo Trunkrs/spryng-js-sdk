@@ -2,7 +2,7 @@
 import Spryng from '../Spryng'
 
 class BaseClient {
-  public api: Spryng
+  protected api: Spryng
 
   constructor(api: Spryng) {
     this.api = api

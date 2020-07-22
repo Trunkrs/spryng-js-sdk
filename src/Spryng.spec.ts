@@ -1,7 +1,7 @@
-import mock from './utils/mockEndpoints'
+import mock from './__mock__/mockEndpoints'
 import Spryng from './index'
-import Message from './Models/Message'
-import MessageCollection from './Models/MessageCollection'
+import Message from './models/Message'
+import MessageCollection from './models/MessageCollection'
 
 describe('Spryng', () => {
   beforeEach(() => {

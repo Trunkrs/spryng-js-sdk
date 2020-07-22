@@ -1,7 +1,7 @@
-import Message from '../Models/Message'
-import MessageCollection from '../Models/MessageCollection'
-import Balance from '../Models/Balance'
-import ApiError from '../Models/ApiError'
+import Message from '../models/Message'
+import MessageCollection from '../models/MessageCollection'
+import Balance from '../models/Balance'
+import ApiError from '../models/ApiError'
 import { IHttpClientError, IHttpClientResponse } from './HttpClientInterface'
 
 class Response {

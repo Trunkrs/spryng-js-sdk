@@ -1,4 +1,4 @@
-import { IHttpClientError } from '../Http/HttpClientInterface'
+import { IHttpClientError } from '../http/HttpClientInterface'
 
 class ApiError extends Error {
   public code: number

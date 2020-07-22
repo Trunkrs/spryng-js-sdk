@@ -1,10 +1,10 @@
 // eslint-disable-next-line import/no-cycle
 import BaseClient from './BaseClient'
 import { HTTP_METHOD } from '../constants'
-import Request from '../Http/Request'
-import Message from '../Models/Message'
-import HttpClient from '../Http/HttpClient'
-import MessageCollection from '../Models/MessageCollection'
+import Request from '../http/Request'
+import Message from '../models/Message'
+import HttpClient from '../http/HttpClient'
+import MessageCollection from '../models/MessageCollection'
 
 class MessageClient extends BaseClient {
   /**
