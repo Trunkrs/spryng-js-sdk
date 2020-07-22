@@ -1,0 +1,40 @@
+{
+  "name": "spryng-sdk",
+  "version": "1.0.0",
+  "description": "Spryng SMS SDK for Javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc",
+    "lint": "yarn eslint . --ext .ts --fix"
+  },
+  "keywords": [
+    "Spryng",
+    "SMS",
+    "SDK"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint && yarn test"
+    }
+  },
+  "author": "Trunkrs <tech.support@trunkrs.nl>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/axios-mock-adapter": "^1.10.0",
+    "@types/jest": "^26.0.5",
+    "@typescript-eslint/eslint-plugin": "^3.6.1",
+    "@typescript-eslint/parser": "^3.6.1",
+    "axios-mock-adapter": "^1.18.2",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-typescript-prettier": "^3.1.0",
+    "husky": "^4.2.5",
+    "jest": "^26.1.0",
+    "prettier": "^2.0.5",
+    "ts-jest": "^26.1.3",
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {
+    "axios": "^0.19.2"
+  }
+}
