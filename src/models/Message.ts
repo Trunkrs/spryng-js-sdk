@@ -24,13 +24,7 @@ class Message {
 
   public updatedAt?: Date
 
-  public recipients?:
-    | Array<{
-        number: string
-        status: MESSAGE_STATUS
-        sentAt: Date
-      }>
-    | string[]
+  public recipients?: Recipient[]
 
   /**
    * check if request URL belongs to a Message instance

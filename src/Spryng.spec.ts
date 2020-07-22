@@ -2,6 +2,7 @@ import mock from './__mock__/mockEndpoints'
 import Spryng from './index'
 import Message from './models/Message'
 import MessageCollection from './models/MessageCollection'
+import Recipient from './models/Recipient'
 
 describe('Spryng', () => {
   beforeEach(() => {
@@ -34,7 +35,10 @@ describe('Spryng', () => {
       const spryng = new Spryng('abc')
       const message = new Message()
       message.body = 'this is my message to the world'
-      message.recipients = ['31612344567', '31698765432']
+      message.recipients = [
+        new Recipient('31612344567'),
+        new Recipient('31698765432'),
+      ]
       message.originator = 'Trunkrs'
       const response = await spryng.message.create(message)
       expect(response.id).toEqual('8c6da478-8721-469d-8bbd-db4bbcdefa04')
