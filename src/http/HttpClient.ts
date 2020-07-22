@@ -1,12 +1,24 @@
 import Request from './Request'
 import Response from './Response'
 import { HTTP_METHOD } from '../constants'
-import IHttpClientInterface from './HttpClientInterface'
+import IHttpClientInterface, {
+  IHttpClientResponse,
+} from './HttpClientInterface'
 
 class HttpClient {
   protected request: Request
 
   protected clientInstance?: IHttpClientInterface
+
+  private static toResponse<T = unknown>(
+    rawResponse: IHttpClientResponse<T>,
+    hasProperty: keyof IHttpClientResponse = 'data',
+  ) {
+    if (rawResponse[hasProperty]) {
+      return new Response(rawResponse).toObject()
+    }
+    return null
+  }
 
   constructor(request: Request, httpClient?: IHttpClientInterface) {
     this.request = request
@@ -19,28 +31,25 @@ class HttpClient {
    */
   public async send() {
     const client = await this.getClient()
-    if (this.request.httpMethod === HTTP_METHOD.DELETE) {
-      await client.delete(this.request.method)
-      return null
+    switch (this.request.httpMethod) {
+      case HTTP_METHOD.DELETE:
+        return HttpClient.toResponse(await client.delete(this.request.method))
+      case HTTP_METHOD.PUT:
+        return HttpClient.toResponse(
+          await client.put(this.request.method, this.request.params),
+        )
+      case HTTP_METHOD.POST:
+        return HttpClient.toResponse(
+          await client.post(this.request.method, this.request.params),
+        )
+      case HTTP_METHOD.GET:
+      default:
+        return HttpClient.toResponse(
+          await client.get(this.request.method, {
+            params: this.request.queryParams,
+          }),
+        )
     }
-    if (this.request.httpMethod === HTTP_METHOD.PUT) {
-      const rawResponse = await client.put(
-        this.request.method,
-        this.request.params,
-      )
-      return new Response(rawResponse).toObject()
-    }
-    if (this.request.httpMethod === HTTP_METHOD.POST) {
-      const rawResponse = await client.post(
-        this.request.method,
-        this.request.params,
-      )
-      return rawResponse.data ? new Response(rawResponse).toObject() : null
-    }
-    const rawResponse = await client.get(this.request.method, {
-      params: this.request.queryParams,
-    })
-    return new Response(rawResponse).toObject()
   }
 
   public async getClient() {
