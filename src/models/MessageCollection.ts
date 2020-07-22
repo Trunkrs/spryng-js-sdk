@@ -1,23 +1,23 @@
 import Message from './Message'
 
 class MessageCollection {
-  public total: number
+  public total?: number
 
-  public perPage: number
+  public perPage?: number
 
-  public currentPage: number
+  public currentPage?: number
 
-  public lastPage: number
+  public lastPage?: number
 
-  public nextPageUrl: string
+  public nextPageUrl?: string
 
-  public prevPageUrl: string
+  public prevPageUrl?: string
 
-  public from: number
+  public from?: number
 
-  public to: number
+  public to?: number
 
-  public data: Message[]
+  public data: Message[] = []
 
   /**
    * convert a raw Axios response body into a MessageCollection instance
@@ -25,39 +25,17 @@ class MessageCollection {
    * @return {MessageCollection}
    */
   static deserialize(rawBody: any): MessageCollection {
-    return new MessageCollection(
-      rawBody.total,
-      rawBody.per_page,
-      rawBody.current_page,
-      rawBody.last_page,
-      rawBody.next_page_url,
-      rawBody.prev_page_url,
-      rawBody.from,
-      rawBody.to,
-      rawBody.data.map(Message.deserialize),
-    )
-  }
-
-  constructor(
-    total: number,
-    perPage: number,
-    currentPage: number,
-    lastPage: number,
-    nextPageUrl: string,
-    prevPageUrl: string,
-    from: number,
-    to: number,
-    data: Message[],
-  ) {
-    this.total = total
-    this.perPage = perPage
-    this.currentPage = currentPage
-    this.lastPage = lastPage
-    this.nextPageUrl = nextPageUrl
-    this.prevPageUrl = prevPageUrl
-    this.from = from
-    this.to = to
-    this.data = data
+    const messageCollection = new MessageCollection()
+    messageCollection.total = rawBody.total
+    messageCollection.perPage = rawBody.per_page
+    messageCollection.currentPage = rawBody.current_page
+    messageCollection.lastPage = rawBody.last_page
+    messageCollection.nextPageUrl = rawBody.next_page_url
+    messageCollection.prevPageUrl = rawBody.prev_page_url
+    messageCollection.from = rawBody.from
+    messageCollection.to = rawBody.to
+    messageCollection.data = rawBody.data.map(Message.deserialize)
+    return messageCollection
   }
 }
 
