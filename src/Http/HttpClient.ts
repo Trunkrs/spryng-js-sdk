@@ -1,19 +1,16 @@
-import Axios, { AxiosInstance } from 'axios'
 import Request from './Request'
 import Response from './Response'
 import { HTTP_METHOD } from '../constants'
+import IHttpClientInterface from './HttpClientInterface'
 
 class HttpClient {
   protected request: Request
 
-  protected instance: AxiosInstance
+  protected clientInstance?: IHttpClientInterface
 
-  constructor(request: Request) {
+  constructor(request: Request, httpClient?: IHttpClientInterface) {
     this.request = request
-    this.instance = Axios.create({
-      baseURL: request.baseUrl,
-      headers: request.headers,
-    })
+    this.clientInstance = httpClient
   }
 
   /**
@@ -21,28 +18,40 @@ class HttpClient {
    * @return {Promise<void|Message|MessageCollection|Balance>} response depends on request type
    */
   public async send() {
+    const client = await this.getClient()
     if (this.request.httpMethod === HTTP_METHOD.DELETE) {
-      await this.instance.delete(this.request.method)
+      await client.delete(this.request.method)
       return null
     }
     if (this.request.httpMethod === HTTP_METHOD.PUT) {
-      const rawResponse = await this.instance.put(
+      const rawResponse = await client.put(
         this.request.method,
         this.request.params,
       )
       return new Response(rawResponse).toObject()
     }
     if (this.request.httpMethod === HTTP_METHOD.POST) {
-      const rawResponse = await this.instance.post(
+      const rawResponse = await client.post(
         this.request.method,
         this.request.params,
       )
       return rawResponse.data ? new Response(rawResponse).toObject() : null
     }
-    const rawResponse = await this.instance.get(this.request.method, {
+    const rawResponse = await client.get(this.request.method, {
       params: this.request.queryParams,
     })
     return new Response(rawResponse).toObject()
+  }
+
+  public async getClient() {
+    if (!this.clientInstance) {
+      const Axios: any = await import('axios')
+      return Axios.create({
+        baseURL: this.request.baseUrl,
+        headers: this.request.headers,
+      })
+    }
+    return this.clientInstance
   }
 }
 

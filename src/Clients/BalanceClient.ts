@@ -13,7 +13,9 @@ class BalanceClient extends BaseClient {
   public get() {
     const request = new Request(this.api.baseUrl, HTTP_METHOD.GET, '/balance')
     request.withBearerToken(this.api.apiKey)
-    return new HttpClient(request).send() as Promise<Balance>
+    return new HttpClient(request, this.api.httpClient).send() as Promise<
+      Balance
+    >
   }
 }
 

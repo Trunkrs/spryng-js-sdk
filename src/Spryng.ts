@@ -2,25 +2,22 @@
 import MessageClient from './Clients/MessageClient'
 // eslint-disable-next-line import/no-cycle
 import BalanceClient from './Clients/BalanceClient'
+import IHttpClientInterface from './Http/HttpClientInterface'
 
 class Spryng {
   public baseUrl = 'https://rest.spryngsms.com/v1'
 
   public apiKey: string
 
-  public static http: any
+  public message = new MessageClient(this)
 
-  constructor(apiKey: string) {
+  public balance = new BalanceClient(this)
+
+  public httpClient?: IHttpClientInterface
+
+  constructor(apiKey: string, httpClient?: IHttpClientInterface) {
     this.apiKey = apiKey
-    Spryng.http = 'test'
-  }
-
-  public message() {
-    return new MessageClient(this)
-  }
-
-  public balance() {
-    return new BalanceClient(this)
+    this.httpClient = httpClient
   }
 }
 

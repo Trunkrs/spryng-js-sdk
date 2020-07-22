@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios'
+import { IHttpClientError } from '../Http/HttpClientInterface'
 
 class ApiError extends Error {
   public code: number
@@ -9,7 +9,7 @@ class ApiError extends Error {
    * deserialize an axios error and throw it
    * @param {AxiosError} the axios error
    */
-  static deserialize(error: AxiosError) {
+  static deserialize(error: IHttpClientError) {
     throw new ApiError(error.code ? Number(error.code) : 500, error.message)
   }
 

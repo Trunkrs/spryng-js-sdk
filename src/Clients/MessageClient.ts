@@ -36,7 +36,9 @@ class MessageClient extends BaseClient {
     request.addParameter('recipients', message.recipients)
     request.addParameter('reference', message.reference)
     request.addParameter('scheduled_at', message.scheduledAt)
-    return new HttpClient(request).send() as Promise<Message>
+    return new HttpClient(request, this.api.httpClient).send() as Promise<
+      Message
+    >
   }
 
   /**
@@ -53,7 +55,9 @@ class MessageClient extends BaseClient {
       }
       request.addQueryStringParameter(filter, filters[filter])
     })
-    return new HttpClient(request).send() as Promise<MessageCollection>
+    return new HttpClient(request, this.api.httpClient).send() as Promise<
+      MessageCollection
+    >
   }
 
   /**
@@ -68,7 +72,9 @@ class MessageClient extends BaseClient {
       `/messages/${id}`,
     )
     request.withBearerToken(this.api.apiKey)
-    return new HttpClient(request).send() as Promise<Message>
+    return new HttpClient(request, this.api.httpClient).send() as Promise<
+      Message
+    >
   }
 
   /**
@@ -82,7 +88,7 @@ class MessageClient extends BaseClient {
       `/messages/${id}/cancel`,
     )
     request.withBearerToken(this.api.apiKey)
-    await new HttpClient(request).send()
+    await new HttpClient(request, this.api.httpClient).send()
   }
 }
 

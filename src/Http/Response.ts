@@ -1,13 +1,13 @@
-import { AxiosResponse, AxiosError } from 'axios'
 import Message from '../Models/Message'
 import MessageCollection from '../Models/MessageCollection'
 import Balance from '../Models/Balance'
 import ApiError from '../Models/ApiError'
+import { IHttpClientError, IHttpClientResponse } from './HttpClientInterface'
 
 class Response {
-  protected rawResponse: Partial<AxiosResponse & AxiosError>
+  protected rawResponse: Partial<IHttpClientResponse & IHttpClientError>
 
-  constructor(rawResponse: AxiosResponse | AxiosError) {
+  constructor(rawResponse: IHttpClientResponse | IHttpClientError) {
     this.rawResponse = rawResponse
   }
 
@@ -39,7 +39,7 @@ class Response {
         return Balance.deserialize(this.rawResponse.data)
       }
     }
-    return ApiError.deserialize(this.rawResponse as AxiosError)
+    return ApiError.deserialize(this.rawResponse as IHttpClientError)
   }
 }
 

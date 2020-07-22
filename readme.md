@@ -30,7 +30,7 @@ message.body = 'My message'
 message.recipients = ['31612344567', '31698765432']
 message.originator = 'My Company'
 
-const response = await spryng.message().create(message)
+const response = await spryng.message.create(message)
 return message.id
 ```
 
@@ -41,7 +41,7 @@ import Spryng, {Message} from 'spryng-sdk'
 
 const spryng = new Spryng('YOUR_API_KEY')
 
-const response = await spryng.message().show('MESSAGE_UUID')
+const response = await spryng.message.show('MESSAGE_UUID')
 return `the body of the message is ${response.body}`
 ```
 
@@ -52,7 +52,7 @@ import Spryng, {Message} from 'spryng-sdk'
 
 const spryng = new Spryng('YOUR_API_KEY')
 
-const response = await spryng.message().list()
+const response = await spryng.message.list()
 response.data.forEach(message => {
  console.log(message.body)
 })
@@ -65,6 +65,6 @@ import Spryng, {Message} from 'spryng-sdk'
 
 const spryng = new Spryng('YOUR_API_KEY')
 
-const response = await spryng.balance().get()
+const response = await spryng.balance.get()
 return `your balance is ${response.amount}`
 ```
