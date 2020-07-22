@@ -19,7 +19,7 @@ describe('Spryng', () => {
       )
       expect(message instanceof Message).toBeTruthy()
       expect(message.id).toBe('8c6da478-8721-469d-8bbd-db4bbcdefa04')
-      expect(mock.history.get[0].headers.Authorization).toBe('abc')
+      expect(mock.history.get[0].headers.Authorization).toBe('Bearer abc')
     })
     it('should fetch a list of messages', async () => {
       expect.assertions(3)

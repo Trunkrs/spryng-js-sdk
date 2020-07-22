@@ -28,7 +28,7 @@ class Request {
    * @param token {string}
    */
   public withBearerToken(token: string) {
-    this.addHeader('Authorization', token)
+    this.addHeader('Authorization', `Bearer ${token}`)
   }
 
   /**
@@ -37,7 +37,7 @@ class Request {
    * @param {any} the header value
    */
   public addHeader(key: string, value: string) {
-    this.headers = { ...this.headers, [key]: value }
+    Object.assign(this.headers, { [key]: value })
   }
 
   /**
@@ -46,7 +46,7 @@ class Request {
    * @param {any} querystring value
    */
   public addQueryStringParameter(key: string, value: any) {
-    this.queryParams = { ...this.queryParams, [key]: value }
+    Object.assign(this.queryParams, { [key]: value })
   }
 
   /**
@@ -55,7 +55,7 @@ class Request {
    * @param {any} parameter value
    */
   public addParameter(key: string, value: any) {
-    this.params = { ...this.params, [key]: value }
+    Object.assign(this.params, { [key]: value })
   }
 
   /**
