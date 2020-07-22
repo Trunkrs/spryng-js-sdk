@@ -10,4 +10,5 @@ node_modules/
 .yarn-integrity
 .env
 lib
+.idea
 .vscode-test
