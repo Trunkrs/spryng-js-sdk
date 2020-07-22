@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 export enum HTTP_METHOD {
   GET = 'GET',
   POST = 'POST',
@@ -6,7 +5,6 @@ export enum HTTP_METHOD {
   DELETE = 'DELETE',
 }
 
-// eslint-disable-next-line
 export enum MESSAGE_STATUS {
   pending = 'pending',
   sent = 'sent',
@@ -14,9 +12,10 @@ export enum MESSAGE_STATUS {
   failed = 'failed',
 }
 
-// eslint-disable-next-line
 export enum MESSAGE_ENCODING {
   plain = 'plain',
   unicode = 'unicode',
   auto = 'auto',
 }
+
+export default { HTTP_METHOD, MESSAGE_STATUS, MESSAGE_ENCODING }
