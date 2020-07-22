@@ -1,4 +1,5 @@
 import { MESSAGE_ENCODING, MESSAGE_STATUS } from '../constants'
+import Recipient from './Recipient'
 
 class Message {
   public id?: string
@@ -57,11 +58,7 @@ class Message {
     message.scheduledAt = new Date(rawBody.scheduled_at)
     message.createdAt = new Date(rawBody.created_at)
     message.updatedAt = new Date(rawBody.updated_at)
-    message.recipients = (rawBody.recipients || []).map((recipient: any) => ({
-      number: recipient.number,
-      status: recipient.status,
-      sentAt: new Date(recipient.sent_at),
-    }))
+    message.recipients = (rawBody.recipients || []).map(Recipient.deserialize)
     return message
   }
 }
