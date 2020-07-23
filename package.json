@@ -1,5 +1,5 @@
 {
-  "name": "spryng-sdk",
+  "name": "@trunkrs/spryng-sdk",
   "version": "1.0.0",
   "description": "Spryng SMS SDK for Javascript",
   "main": "lib/index.js",
