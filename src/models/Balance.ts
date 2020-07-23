@@ -1,4 +1,9 @@
 class Balance {
+  /**
+   * the amount of credits left on your balance
+   * @type {number}
+   * @public
+   */
   public amount: number
 
   /**

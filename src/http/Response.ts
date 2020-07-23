@@ -5,6 +5,9 @@ import ApiError from '../models/ApiError'
 import { IHttpClientError, IHttpClientResponse } from './HttpClientInterface'
 
 class Response {
+  /**
+   *
+   */
   protected rawResponse: Partial<IHttpClientResponse & IHttpClientError>
 
   constructor(rawResponse: IHttpClientResponse | IHttpClientError) {

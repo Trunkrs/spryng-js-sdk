@@ -1,16 +1,46 @@
 import { HTTP_METHOD } from '../constants'
 
 class Request {
+  /**
+   * Base URL for the request
+   * @type {string}
+   * @public
+   */
   public baseUrl: string
 
+  /**
+   * The HTTP Method used for this request
+   * @type {string} GET|DELETE|POST|PUT
+   * @public
+   */
   public httpMethod: HTTP_METHOD
 
+  /**
+   * The API method to call
+   * @type {string}
+   * @public
+   */
   public method: string
 
+  /**
+   * The headers to use on this request
+   * @type {object}
+   * @public
+   */
   public headers = {}
 
+  /**
+   * Query string parameters for the request
+   * @type {object}
+   * @public
+   */
   public queryParams = {}
 
+  /**
+   * The request body (application/json)
+   * @type {object}
+   * @public
+   */
   public params = {}
 
   constructor(

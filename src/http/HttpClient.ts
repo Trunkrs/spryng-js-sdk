@@ -5,11 +5,30 @@ import IHttpClientInterface, {
   IHttpClientResponse,
 } from './HttpClientInterface'
 
+/**
+ * HttpClient wrapper
+ */
 class HttpClient {
+  /**
+   * The request handled by the HttpClient
+   * @type {Request}
+   * @protected
+   */
   protected request: Request
 
+  /**
+   * An instance of the actual HttpClient, must adhere to the interface of IHttpClientInterface
+   * @type {IHttpClientInterface}
+   * @protected
+   */
   protected clientInstance?: IHttpClientInterface
 
+  /**
+   * Convert the raw response from the HttpClient to an instance of a response Model
+   * @param {IHttpClientResponse} rawResponse
+   * @param {string} hasProperty default is 'data'
+   * @return <Message|MessageCollection|Balance|null>
+   */
   private static toResponse<T = unknown>(
     rawResponse: IHttpClientResponse<T>,
     hasProperty: keyof IHttpClientResponse = 'data',
@@ -52,6 +71,10 @@ class HttpClient {
     }
   }
 
+  /**
+   * Get the HttpClient instance or dynamically import axios
+   * @return {IHttpClientInterface} http client
+   */
   public async getClient() {
     if (!this.clientInstance) {
       const Axios: any = await import('axios')

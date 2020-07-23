@@ -1,8 +1,19 @@
 import { IHttpClientError } from '../http/HttpClientInterface'
 
+/**
+ * Extends error, returns a unified error on HTTP errors
+ */
 class ApiError extends Error {
-  public code: number
+  /**
+   * code {number} the http error code
+   * @private
+   */
+  private code: number
 
+  /**
+   * message {string} the http error message
+   * @public
+   */
   public message: string
 
   /**

@@ -16,6 +16,9 @@ type FILTERS_KEYS =
   | 'scheduled_until'
   | 'status'
 
+/**
+ * Client which exposes the HTTP methods available for Messages
+ */
 class MessageClient extends BaseClient {
   /**
    * Allowed filters

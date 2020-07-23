@@ -5,6 +5,9 @@ import { HTTP_METHOD } from '../constants'
 import HttpClient from '../http/HttpClient'
 import Balance from '../models/Balance'
 
+/**
+ * Client which exposes the HTTP methods available for Balance
+ */
 class BalanceClient extends BaseClient {
   /**
    * Get the current balance
