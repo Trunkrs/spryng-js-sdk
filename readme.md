@@ -2,7 +2,7 @@
 
 this SDK is written in TypeScript and resembles the official [Spryng PHP SDK](https://github.com/Spryng/rest-api-php).
 
-## installation
+## Installation
 
 *1. install via your favorite package manager*
 
@@ -10,11 +10,26 @@ this SDK is written in TypeScript and resembles the official [Spryng PHP SDK](ht
 
 `yarn add spryng-sdk`
 
-*2. import into your project*
+*2. add a http client*
+
+this project has no hard outside dependencies. However it will need a Http client. The easiest way is just to install Axios:
+
+`yarn add axios`
+
+Axios will work with the SDK out of the box. If you would rather write your own implementation, use the interface described in [http/HttpClientInterface.ts](https://github.com/Trunkrs/spryng-js-sdk/blob/master/src/http/HttpClientInterface.ts).
+
+*3. import into your project*
 
 ```typescript
 import Spryng from 'spryng-sdk'
 const spryng = new Spryng('YOUR_API_KEY')
+```
+
+If you are using a custom Http client (not axios) please provide this as the second parameter on initializing Spryng:
+
+```typescript
+import Spryng from 'spryng-sdk'
+const spryng = new Spryng('YOUR_API_KEY', httpClient)
 ```
 
 ## Sending messages
