@@ -6,11 +6,21 @@ import Message from '../models/Message'
 import HttpClient from '../http/HttpClient'
 import MessageCollection from '../models/MessageCollection'
 
+type FILTERS_KEYS =
+  | 'originator'
+  | 'recipient_number'
+  | 'reference'
+  | 'created_from'
+  | 'created_until'
+  | 'scheduled_from'
+  | 'scheduled_until'
+  | 'status'
+
 class MessageClient extends BaseClient {
   /**
    * Allowed filters
    */
-  private static listFilters = [
+  private static listFilters: FILTERS_KEYS[] = [
     'originator',
     'recipient_number',
     'reference',
@@ -46,14 +56,15 @@ class MessageClient extends BaseClient {
    * @param {object} filters, the keys of which must be part of MessageClient.listFilters
    * @return {Promise<MessageCollection>} returns an instance of MessageCollection
    */
-  public list(filters: { [key: string]: string } = {}) {
+  public list(filters: { [key in FILTERS_KEYS]?: string } = {}) {
     const request = new Request(this.api.baseUrl, HTTP_METHOD.GET, '/messages')
     request.withBearerToken(this.api.apiKey)
-    Object.keys(filters).forEach((filter) => {
-      if (MessageClient.listFilters.indexOf(filter) > -1) {
-        throw new Error(`${filter} is not a valid filter`)
+    const filterKeys = Object.keys(filters) as FILTERS_KEYS[]
+    filterKeys.forEach((filterKey) => {
+      if (!Object.prototype.hasOwnProperty.call(filters, filterKey)) {
+        throw new Error(`${filterKey} is not a valid filter`)
       }
-      request.addQueryStringParameter(filter, filters[filter])
+      request.addQueryStringParameter(filterKey, filters[filterKey])
     })
     return new HttpClient(request, this.api.httpClient).send() as Promise<
       MessageCollection
