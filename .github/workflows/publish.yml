@@ -1,10 +1,10 @@
-name: CI
+name: Publish
 on:
-  push:
-    branches: [ master ]
+  release:
+    types: [ published ]
 
 jobs:
-  test:
+  publish:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -15,3 +15,7 @@ jobs:
         run: yarn lint
       - name: test
         run: yarn test
+      - name: publish to npm
+        run: npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
