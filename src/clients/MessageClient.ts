@@ -48,7 +48,9 @@ class MessageClient extends BaseClient {
     request.addParameter('originator', message.originator)
     request.addParameter('recipients', message.recipients)
     request.addParameter('reference', message.reference)
-    request.addParameter('scheduled_at', message.scheduledAt)
+    if (message.scheduledAt) {
+      request.addParameter('scheduled_at', message.scheduledAt.toISOString())
+    }
     return new HttpClient(request, this.api.httpClient).send() as Promise<
       Message
     >
