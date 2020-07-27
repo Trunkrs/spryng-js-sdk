@@ -6,9 +6,9 @@ this SDK is written in TypeScript and resembles the official [Spryng PHP SDK](ht
 
 *1. install via your favorite package manager*
 
-`npm install spryng-sdk`
+`npm install @trunkrs/spryng-sdk --save`
 
-`yarn add spryng-sdk`
+`yarn add @trunkrs/spryng-sdk`
 
 *2. add a http client*
 
