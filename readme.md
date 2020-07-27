@@ -21,14 +21,14 @@ Axios will work with the SDK out of the box. If you would rather write your own 
 *3. import into your project*
 
 ```typescript
-import Spryng from 'spryng-sdk'
+import Spryng from '@trunkrs/spryng-sdk'
 const spryng = new Spryng('YOUR_API_KEY')
 ```
 
 If you are using a custom Http client (not axios) please provide this as the second parameter on initializing Spryng:
 
 ```typescript
-import Spryng from 'spryng-sdk'
+import Spryng from '@trunkrs/spryng-sdk'
 const spryng = new Spryng('YOUR_API_KEY', httpClient)
 ```
 
@@ -37,12 +37,15 @@ const spryng = new Spryng('YOUR_API_KEY', httpClient)
 To send a message create a new Message and run create on the message client
 
 ```typescript
-import Spryng, {Message} from 'spryng-sdk'
+import Spryng, {Message, Recipient} from '@trunkrs/spryng-sdk'
 
 const spryng = new Spryng('YOUR_API_KEY')
 const message = new Message()
 message.body = 'My message'
-message.recipients = ['31612344567', '31698765432']
+message.recipients = [
+    new Recipient('31612344567'),
+    new Recipient('31698765432')
+]
 message.originator = 'My Company'
 
 const response = await spryng.message.create(message)
