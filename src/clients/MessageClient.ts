@@ -40,13 +40,19 @@ class MessageClient extends BaseClient {
    * @return {Promise<Message>} returns a Message instance
    */
   public create(message: Message) {
+    if (!message.originator || !message.body || !message.recipients) {
+      throw new Error(`An originator, recipient and body are required`)
+    }
     const request = new Request(this.api.baseUrl, HTTP_METHOD.POST, '/messages')
     request.withBearerToken(this.api.apiKey)
     request.addParameter('encoding', message.encoding)
     request.addParameter('body', message.body)
     request.addParameter('route', message.route)
     request.addParameter('originator', message.originator)
-    request.addParameter('recipients', message.recipients)
+    request.addParameter(
+      'recipients',
+      message.recipients.map((recipient) => recipient.number),
+    )
     request.addParameter('reference', message.reference)
     if (message.scheduledAt) {
       request.addParameter('scheduled_at', message.scheduledAt.toISOString())
