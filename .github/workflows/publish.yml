@@ -9,5 +9,7 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@master
+      - name: install
+        run: yarn
       - name: publish to npm
         run: npm config set //registry.npmjs.org/:_authToken ${{secrets.NPM_TOKEN}} && npm publish --access public
