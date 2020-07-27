@@ -11,7 +11,13 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: master
+      - name: Check package version
+        uses: technote-space/package-version-check-action@v1
+        with:
+          COMMIT_DISABLED: 1
       - name: install
         run: yarn
       - name: publish to npm
         run: npm config set //registry.npmjs.org/:_authToken ${{secrets.NPM_TOKEN}} && npm publish --access public
+        env:
+          NPM_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
