@@ -22,4 +22,4 @@ jobs:
           COVERALLS_SERVICE_NAME: Github
           COVERALLS_REPO_TOKEN: ${{ secrets.COVERALL_TOKEN }}
         run: |
-          coveralls < coverage/lcov.info
+          ./node_modules/.bin/coveralls < coverage/lcov.info
