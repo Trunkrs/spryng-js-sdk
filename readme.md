@@ -1,4 +1,4 @@
-![Test](https://github.com/Trunkrs/spryng-js-sdk/workflows/Test/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/Trunkrs/spryng-js-sdk/badge.svg?branch=master)](https://coveralls.io/github/Trunkrs/spryng-js-sdk?branch=master) ![npm](https://img.shields.io/npm/v/@trunkrs/spryng-sdk)
+![Test](https://github.com/Trunkrs/spryng-js-sdk/workflows/Test/badge.svg?branch=master&event=push) [![Coverage Status](https://coveralls.io/repos/github/Trunkrs/spryng-js-sdk/badge.svg?branch=master)](https://coveralls.io/github/Trunkrs/spryng-js-sdk?branch=master) ![npm](https://img.shields.io/npm/v/@trunkrs/spryng-sdk)
 
 # Spryng SDK Javascript
 
