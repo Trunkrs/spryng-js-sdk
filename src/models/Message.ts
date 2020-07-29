@@ -1,4 +1,4 @@
-import { MESSAGE_ENCODING, MESSAGE_STATUS } from '../constants'
+import { BASE_URL, MESSAGE_ENCODING, MESSAGE_STATUS } from '../constants'
 import Recipient from './Recipient'
 
 class Message {
@@ -93,7 +93,7 @@ class Message {
    * @return {boolean}
    */
   public static isOfType(url: string) {
-    return /^\/message(.*)/.test(url)
+    return /^\/message(.*)/.test(url.replace(BASE_URL, ''))
   }
 
   /**

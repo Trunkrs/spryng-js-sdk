@@ -18,4 +18,6 @@ export enum MESSAGE_ENCODING {
   auto = 'auto',
 }
 
+export const BASE_URL = 'https://rest.spryngsms.com/v1'
+
 export default { HTTP_METHOD, MESSAGE_STATUS, MESSAGE_ENCODING }

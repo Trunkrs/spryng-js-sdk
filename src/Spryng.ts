@@ -3,6 +3,7 @@ import MessageClient from './clients/MessageClient'
 // eslint-disable-next-line import/no-cycle
 import BalanceClient from './clients/BalanceClient'
 import IHttpClientInterface from './http/HttpClientInterface'
+import { BASE_URL } from './constants'
 
 class Spryng {
   /**
@@ -10,7 +11,7 @@ class Spryng {
    * @type {string}
    * @public
    */
-  public baseUrl = 'https://rest.spryngsms.com/v1'
+  public baseUrl = BASE_URL
 
   /**
    * Your api key, will be added as Bearer to all requests

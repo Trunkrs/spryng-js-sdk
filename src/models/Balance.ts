@@ -1,3 +1,5 @@
+import { BASE_URL } from '../constants'
+
 class Balance {
   /**
    * the amount of credits left on your balance
@@ -12,7 +14,7 @@ class Balance {
    * @return {boolean}
    */
   public static isOfType(url: string) {
-    return /^\/balance(.*)/.test(url)
+    return /^\/balance(.*)/.test(url.replace(BASE_URL, ''))
   }
 
   /**
