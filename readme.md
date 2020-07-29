@@ -1,3 +1,5 @@
+![Test](https://github.com/Trunkrs/spryng-js-sdk/workflows/Test/badge.svg) [![Coverage Status](https://coveralls.io/repos/github/Trunkrs/spryng-js-sdk/badge.svg?branch=master)](https://coveralls.io/github/Trunkrs/spryng-js-sdk?branch=master) ![npm](https://img.shields.io/npm/v/@trunkrs/spryng-sdk)
+
 # Spryng SDK Javascript
 
 this SDK is written in TypeScript and resembles the official [Spryng PHP SDK](https://github.com/Spryng/rest-api-php).
